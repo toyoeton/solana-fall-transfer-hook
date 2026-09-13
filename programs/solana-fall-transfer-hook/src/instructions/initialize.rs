@@ -31,6 +31,7 @@ pub fn handler(ctx: Context<Initialize>) -> Result<()> {
 
     // Initialize the rate limit account with the authority, mint, max amount, and window start timestamp
     ctx.accounts.rate_limit.set_inner(RateLimit {
+        mint: ctx.accounts.mint.key(),
         authority: ctx.accounts.payer.key(),
         max_amount: RateLimit::MAX_AMOUNT,
         window_start: Clock::get()?.unix_timestamp,
